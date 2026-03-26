@@ -166,7 +166,7 @@ try {
   //#region Custom IPC handlers
 
 
-  ipcMain.handle('unified-login', async (event, environment: string) => {
+  ipcMain.handle('unified-login', async (_event, environment: string) => {
     return unifiedLogin(environment);
   });
 
@@ -174,23 +174,23 @@ try {
     return disconnectFromISC();
   });
 
-  ipcMain.handle('check-access-token-status', async (event) => {
+  ipcMain.handle('check-access-token-status', async (_event) => {
     return checkAccessTokenStatus();
   });
 
-  ipcMain.handle('get-current-token-details', async (event, environment: string) => {
+  ipcMain.handle('get-current-token-details', async (_event, environment: string) => {
     return getCurrentTokenDetails(environment);
   });
 
-  ipcMain.handle('refresh-tokens', async (event) => {
+  ipcMain.handle('refresh-tokens', async (_event) => {
     return refreshTokens();
   });
 
-  ipcMain.handle('validate-tokens', async (event, environment: string) => {
+  ipcMain.handle('validate-tokens', async (_event, environment: string) => {
     return validateTokens(environment);
   });
 
-  ipcMain.handle('check-oauth-code-flow-complete', async (event, uuid: string, environment: string) => {
+  ipcMain.handle('check-oauth-code-flow-complete', async (_event, uuid: string, environment: string) => {
     return checkOauthCodeFlowComplete(uuid, environment);
   });
 
@@ -198,20 +198,20 @@ try {
     return getTenants();
   });
 
-  ipcMain.handle('update-environment', (event, config: UpdateEnvironmentRequest) => {
+  ipcMain.handle('update-environment', (_event, config: UpdateEnvironmentRequest) => {
     return updateEnvironment(config);
   });
 
   ipcMain.handle(
     'delete-environment',
-    (event, environment: string) => {
+    (_event, environment: string) => {
       return deleteEnvironment(environment);
     }
   );
 
   ipcMain.handle(
     'set-active-environment',
-    (event, environment: string) => {
+    (_event, environment: string) => {
       return setActiveEnvironment(environment);
     }
   );
@@ -283,7 +283,7 @@ try {
     }
   });
 
-  ipcMain.handle('write-config', async (event, config) => {
+  ipcMain.handle('write-config', async (_event, config) => {
     try {
       const configPath = getConfigPath();
       console.log('Writing config to:', configPath);
