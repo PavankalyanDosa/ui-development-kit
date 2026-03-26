@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTabGroup } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -68,7 +69,7 @@ export class SettingsComponent implements OnInit, HasUnsavedChanges {
     return this.isDirtySource || this.isDirtyIsc || this.isDirtyGit;
   }
 
-  navigateToIscTab(tabGroup: { selectedIndex: number }): void {
+  navigateToIscTab(tabGroup: MatTabGroup): void {
     tabGroup.selectedIndex = this.defaultTabIndex;
   }
 }
