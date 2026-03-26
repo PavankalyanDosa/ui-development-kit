@@ -12,7 +12,7 @@ The Policy Engine is built in six phases that mirror ISC's own resource dependen
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Electron shell, IPC bridge, encrypted local store, and settings UI scaffold
+- [x] **Phase 1: Foundation** - Electron shell, IPC bridge, encrypted local store, and settings UI scaffold (completed 2026-03-26)
 - [ ] **Phase 2: ISC Connection + Bootstrap** - PAT auth, connection test, tenant bootstrap, identity/entitlement search, rate limiting
 - [ ] **Phase 3: Policy Management + Definition Editor** - Full policy authoring: CRUD, drag-and-drop priority, Monaco editor, entitlements, OU mapping, git auto-commit
 - [ ] **Phase 4: Transform Generation + Resource Generators** - All ISC resource generation: 4 transform types, identity attribute wiring, roles, access profiles, segments, provisioning policies
@@ -100,7 +100,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In Progress|  |
+| 1. Foundation | 3/3 | Complete   | 2026-03-26 |
 | 2. ISC Connection + Bootstrap | 0/TBD | Not started | - |
 | 3. Policy Management + Definition Editor | 0/TBD | Not started | - |
 | 4. Transform Generation + Resource Generators | 0/TBD | Not started | - |

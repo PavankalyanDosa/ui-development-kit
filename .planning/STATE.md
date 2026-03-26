@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 1 of 6 (Foundation)
-Plan: 2 of TBD in current phase
+Plan: 3 of TBD in current phase
 Status: In progress
-Last activity: 2026-03-26 — Plan 01-02 complete: Angular PE module + Settings UI (CONN-01, CONN-02)
+Last activity: 2026-03-26 — Plan 01-03 complete: Git Settings tab + utility actions (CONN-04) — Phase 1 all 5 success criteria met
 
-Progress: [█░░░░░░░░░] 5%
+Progress: [██░░░░░░░░] 8%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 7.5 min
-- Total execution time: 0.25 hours
+- Total plans completed: 3
+- Average duration: 7.3 min
+- Total execution time: 0.37 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 2 | 15 min | 7.5 min |
+| 01-foundation | 3 | 22 min | 7.3 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (9 min), 01-02 (6 min)
-- Trend: accelerating
+- Last 5 plans: 01-01 (9 min), 01-02 (6 min), 01-03 (7 min)
+- Trend: stable
 
 *Updated after each plan completion*
 
@@ -53,6 +53,9 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: 01-02: Sidenav always rendered; isConnected guard moved inside to individual nav items so PE link accessible without connection
 - [Phase 01-foundation]: 01-02: pe-settings.models.ts mirrors preload-api.ts interfaces in src/ tree to avoid cross-boundary import
 - [Phase 01-foundation]: 01-02: GitSettingsTabComponent is stub (isDirty=false); Plan 03 provides full git settings implementation
+- [Phase 01-foundation]: optionalEmailValidator: custom validator skips Validators.email when committerEmail is empty — optional fields must only validate when non-empty
+- [Phase 01-foundation]: ConfirmResetDialogComponent declared inline in settings-actions.component.ts — keeps small dialog co-located with caller, avoids extra file for 5-line dialog
+- [Phase 01-foundation]: gitAuthToken in PeSettingsPayload only when user types a value — prevents silent erasure of stored token on non-token saves
 
 ### Pending Todos
 
@@ -67,5 +70,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: Completed 01-02-PLAN.md — Angular PE module + Settings UI (CONN-01, CONN-02) complete
+Stopped at: Completed 01-03-PLAN.md — Git Settings tab + settings utility actions (CONN-04) complete; Phase 1 all 5 success criteria verifiable
 Resume file: None
