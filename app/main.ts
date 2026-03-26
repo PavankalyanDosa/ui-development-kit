@@ -51,7 +51,6 @@ function createWindow(): BrowserWindow {
       preload: path.join(__dirname, 'preload.js'),
       allowRunningInsecureContent: serve,
       contextIsolation: true,
-      sandbox: true,
     },
   });
 
