@@ -114,10 +114,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONN-01 | Phase 2 | Pending |
-| CONN-02 | Phase 2 | Pending |
+| CONN-01 | Phase 1 | Pending |
+| CONN-02 | Phase 1 | Pending |
 | CONN-03 | Phase 2 | Pending |
-| CONN-04 | Phase 6 | Pending |
+| CONN-04 | Phase 1 | Pending |
 | CONN-05 | Phase 2 | Pending |
 | CONN-06 | Phase 2 | Pending |
 | POLY-01 | Phase 3 | Pending |
@@ -160,10 +160,10 @@
 | AUDIT-04 | Phase 6 | Pending |
 
 **Coverage:**
-- v1 requirements: 43 total
-- Mapped to phases: 43
+- v1 requirements: 44 total
+- Mapped to phases: 44
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-25*
-*Last updated: 2026-03-25 after initial definition*
+*Last updated: 2026-03-25 — traceability updated to match ROADMAP.md phase assignments; corrected count from 43 to 44 (DEPL-07 was present but not counted)*
