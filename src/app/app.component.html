@@ -59,7 +59,7 @@
   <mat-sidenav
     #sidenav
     [mode]="isSmallScreen ? 'over' : 'side'"
-    [opened]="isConnected || isComponentEnabled('policy-engine') ? sidenavOpened : false"
+    [opened]="(isConnected || isComponentEnabled('policy-engine')) && sidenavOpened"
     (openedChange)="sidenavOpened = $event"
     >
     <mat-nav-list>
