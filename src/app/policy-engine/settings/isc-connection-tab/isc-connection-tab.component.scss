@@ -1,0 +1,49 @@
+.isc-loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.isc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+  max-width: 560px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.lock-icon {
+  color: var(--mat-sys-on-surface-variant, #6b7280);
+  cursor: help;
+}
+
+.remove-secret-row {
+  display: flex;
+  margin-top: -4px;
+}
+
+.remove-secret-btn {
+  color: var(--mat-sys-error, #dc2626);
+  font-size: 13px;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+.btn-spinner {
+  display: inline-block;
+}

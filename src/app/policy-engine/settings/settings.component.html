@@ -1,0 +1,59 @@
+<div class="settings-container">
+
+  <div class="settings-header">
+    <div class="settings-title-row">
+      <h1 class="settings-title">Policy Engine Settings</h1>
+      <button mat-icon-button routerLink="/policy-engine" aria-label="Back to Policy Engine" title="Back to Policy Engine">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <!-- Connection status badge -->
+    <div class="connection-badge"
+         [class.configured]="iscConfigured"
+         (click)="navigateToIscTab(tabGroup)"
+         role="button"
+         tabindex="0"
+         aria-label="ISC Connection status - click to go to ISC Connection tab"
+         [matTooltip]="iscConfigured ? 'ISC connection configured — click to edit' : 'ISC connection not configured — click to set up'">
+      <span class="badge-dot"></span>
+      <span class="badge-text">{{ iscConfigured ? 'Connected' : 'Not Configured' }}</span>
+    </div>
+  </div>
+
+  <mat-tab-group
+    #tabGroup
+    [selectedIndex]="defaultTabIndex"
+    animationDuration="0ms"
+    class="settings-tabs">
+
+    <!-- Source Metadata Tab (index 0) -->
+    <mat-tab [label]="isDirtySource ? '● Source Metadata' : 'Source Metadata'">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-source-metadata-tab></app-source-metadata-tab>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <!-- ISC Connection Tab (index 1 — default) -->
+    <mat-tab [label]="isDirtyIsc ? '● ISC Connection' : 'ISC Connection'">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-isc-connection-tab></app-isc-connection-tab>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <!-- Git Settings Tab (index 2 — stub, Plan 03) -->
+    <mat-tab [label]="isDirtyGit ? '● Git Settings' : 'Git Settings'">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-git-settings-tab></app-git-settings-tab>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

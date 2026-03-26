@@ -1,0 +1,33 @@
+.metadata-loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.metadata-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+  max-width: 560px;
+}
+
+.tab-description {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--mat-sys-on-surface-variant, #6b7280);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+.btn-spinner {
+  display: inline-block;
+}

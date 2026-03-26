@@ -1,0 +1,89 @@
+@if (loading) {
+  <div class="isc-loading">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+} @else {
+  <form [formGroup]="form" class="isc-form" (ngSubmit)="onSave()">
+
+    <!-- Tenant URL -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Tenant URL</mat-label>
+      <input
+        matInput
+        formControlName="tenantUrl"
+        placeholder="https://tenant.api.identitynow.com"
+        autocomplete="off"
+      />
+      @if (tenantUrlCtrl.errors?.['required'] && tenantUrlCtrl.touched) {
+        <mat-error>Tenant URL is required</mat-error>
+      }
+      @if (tenantUrlCtrl.errors?.['pattern'] && tenantUrlCtrl.touched) {
+        <mat-error>Must match format: https://&lt;tenant&gt;.api.identitynow.com</mat-error>
+      }
+      <mat-hint>Format: https://&lt;tenant&gt;.api.identitynow.com</mat-hint>
+    </mat-form-field>
+
+    <!-- PAT Client ID -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>PAT Client ID</mat-label>
+      <input
+        matInput
+        formControlName="patClientId"
+        placeholder="Enter PAT Client ID"
+        autocomplete="off"
+      />
+      @if (patClientIdCtrl.errors?.['required'] && patClientIdCtrl.touched) {
+        <mat-error>PAT Client ID is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- PAT Secret -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>PAT Secret</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="patSecret"
+        [placeholder]="patSecretAlreadyStored ? '••••••••••' : 'Enter PAT secret'"
+        autocomplete="new-password"
+      />
+      <mat-icon matSuffix
+        [matTooltip]="'Encrypted via OS keychain (safeStorage)'"
+        class="lock-icon">
+        lock
+      </mat-icon>
+      @if (patSecretRequiredError) {
+        <mat-error>PAT secret is required</mat-error>
+      }
+      @if (patSecretAlreadyStored) {
+        <mat-hint>A secret is stored. Enter a new value to replace it, or leave blank to keep existing.</mat-hint>
+      }
+    </mat-form-field>
+
+    <!-- Remove secret action (only shown when secret is stored) -->
+    @if (patSecretAlreadyStored) {
+      <div class="remove-secret-row">
+        <button mat-button type="button" class="remove-secret-btn" (click)="onRemoveSecret()">
+          <mat-icon>lock_open</mat-icon>
+          Remove stored secret
+        </button>
+      </div>
+    }
+
+    <!-- Save -->
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!isDirty || saving">
+        @if (saving) {
+          <mat-spinner diameter="18" class="btn-spinner"></mat-spinner>
+        } @else {
+          Save
+        }
+      </button>
+    </div>
+
+  </form>
+}

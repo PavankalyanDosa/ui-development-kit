@@ -1,0 +1,73 @@
+@if (loading) {
+  <div class="metadata-loading">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+} @else {
+  <form [formGroup]="form" class="metadata-form" (ngSubmit)="onSave()">
+
+    <p class="tab-description">
+      Optional metadata for the source managed by this Policy Engine instance.
+      These fields are informational and do not affect ISC connectivity.
+    </p>
+
+    <!-- Source Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Source Name</mat-label>
+      <input
+        matInput
+        formControlName="name"
+        placeholder="e.g. HR System"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Brief description of this source"
+        rows="3"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Owner -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Owner</mat-label>
+      <input
+        matInput
+        formControlName="owner"
+        placeholder="Owner name or email"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Governance Group -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Governance Group</mat-label>
+      <input
+        matInput
+        formControlName="governanceGroup"
+        placeholder="Governance group name"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Save -->
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!isDirty || saving">
+        @if (saving) {
+          <mat-spinner diameter="18" class="btn-spinner"></mat-spinner>
+        } @else {
+          Save
+        }
+      </button>
+    </div>
+
+  </form>
+}
