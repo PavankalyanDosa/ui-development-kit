@@ -7,10 +7,10 @@
 
 ### Connection & Configuration
 
-- [ ] **CONN-01**: Admin can configure source metadata (name, description, owner, governance group)
-- [ ] **CONN-02**: Admin can configure ISC connection (tenant API URL, PAT client ID, PAT secret)
+- [x] **CONN-01**: Admin can configure source metadata (name, description, owner, governance group)
+- [x] **CONN-02**: Admin can configure ISC connection (tenant API URL, PAT client ID, PAT secret)
 - [ ] **CONN-03**: Admin can configure identity profile reference (dropdown populated from ISC)
-- [ ] **CONN-04**: Admin can configure git settings (committer name/email, remote URL, auth token, push interval)
+- [x] **CONN-04**: Admin can configure git settings (committer name/email, remote URL, auth token, push interval)
 - [ ] **CONN-05**: Test Connection validates PAT, returns tenant info, and bootstraps default transforms + identity attributes if missing
 - [ ] **CONN-06**: Operator identity resolved from ISC via `identity_id` in token response → `GET /v2025/identities/{id}`
 
@@ -114,10 +114,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONN-01 | Phase 1 | Pending |
-| CONN-02 | Phase 1 | Pending |
+| CONN-01 | Phase 1 | Complete |
+| CONN-02 | Phase 1 | Complete |
 | CONN-03 | Phase 2 | Pending |
-| CONN-04 | Phase 1 | Pending |
+| CONN-04 | Phase 1 | Complete |
 | CONN-05 | Phase 2 | Pending |
 | CONN-06 | Phase 2 | Pending |
 | POLY-01 | Phase 3 | Pending |
