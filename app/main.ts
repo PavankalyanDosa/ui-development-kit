@@ -42,10 +42,11 @@ function createWindow(): BrowserWindow {
     height: size.height / 2,
     autoHideMenuBar: false,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js'),
       allowRunningInsecureContent: serve,
       contextIsolation: true,
+      sandbox: true,
     },
   });
 
