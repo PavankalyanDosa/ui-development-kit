@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 1 of 6 (Foundation)
-Plan: 1 of TBD in current phase
+Plan: 2 of TBD in current phase
 Status: In progress
-Last activity: 2026-03-26 — Plan 01-01 complete: Electron security hardening + policy-engine IPC module
+Last activity: 2026-03-26 — Plan 01-02 complete: Angular PE module + Settings UI (CONN-01, CONN-02)
 
 Progress: [█░░░░░░░░░] 5%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 9 min
-- Total execution time: 0.15 hours
+- Total plans completed: 2
+- Average duration: 7.5 min
+- Total execution time: 0.25 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 1 | 9 min | 9 min |
+| 01-foundation | 2 | 15 min | 7.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (9 min)
-- Trend: baseline established
+- Last 5 plans: 01-01 (9 min), 01-02 (6 min)
+- Trend: accelerating
 
 *Updated after each plan completion*
 
@@ -50,6 +50,9 @@ Recent decisions affecting current work:
 - 01-01: `pe:` channels use safeStorage key format `pe.isc.patSecret` / `pe.git.authToken` with environment string `policy-engine`
 - Phase 2: `sailpoint-api-client` pinned to 1.8.6 (v2025); do NOT use v2026 endpoints
 - Phase 3: Monaco workers bundled locally (never CDN); CSP config verified with `webSecurity: true` early in phase
+- [Phase 01-foundation]: 01-02: Sidenav always rendered; isConnected guard moved inside to individual nav items so PE link accessible without connection
+- [Phase 01-foundation]: 01-02: pe-settings.models.ts mirrors preload-api.ts interfaces in src/ tree to avoid cross-boundary import
+- [Phase 01-foundation]: 01-02: GitSettingsTabComponent is stub (isDirty=false); Plan 03 provides full git settings implementation
 
 ### Pending Todos
 
@@ -64,5 +67,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: Completed 01-01-PLAN.md — Electron security hardening + policy-engine IPC module complete
+Stopped at: Completed 01-02-PLAN.md — Angular PE module + Settings UI (CONN-01, CONN-02) complete
 Resume file: None
