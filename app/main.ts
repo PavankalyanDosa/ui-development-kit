@@ -1,4 +1,5 @@
-import { app, BrowserWindow, dialog, ipcMain, screen, shell } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, shell, Tray } from 'electron';
+import windowStateKeeper from 'electron-window-state';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
@@ -6,10 +7,12 @@ import { setupSailPointSDKHandlers } from './sailpoint-sdk/ipc-handlers';
 import { setupDiscourseHandlers } from './discourse/ipc-handlers';
 import { setupGitHubHandlers } from './github/ipc-handlers';
 import { setupConnectorHandlers } from './connector/ipc-handlers';
+import { setupPolicyEngineHandlers } from './policy-engine/ipc-handlers';
 import { disconnectFromISC, refreshTokens, unifiedLogin, validateTokens, checkAccessTokenStatus, getCurrentTokenDetails, checkOauthCodeFlowComplete } from './authentication/auth';
 import { deleteEnvironment, getTenants, setActiveEnvironment, updateEnvironment, UpdateEnvironmentRequest } from './authentication/config';
 // Global variables
 let win: BrowserWindow | undefined;
+let tray: Tray | undefined;
 
 const args = process.argv.slice(1);
 const serve = args.some((val) => val === '--serve');
@@ -32,14 +35,16 @@ function ensureConfigDir(): void {
 
 // Main window creation
 function createWindow(): BrowserWindow {
-  const size = screen.getPrimaryDisplay().workAreaSize;
+  const mainWindowState = windowStateKeeper({ defaultWidth: 1200, defaultHeight: 800 });
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width / 2,
-    height: size.height / 2,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    minWidth: 900,
+    minHeight: 700,
     autoHideMenuBar: false,
     webPreferences: {
       nodeIntegration: false,
@@ -49,6 +54,8 @@ function createWindow(): BrowserWindow {
       sandbox: true,
     },
   });
+
+  mainWindowState.manage(win);
 
   win.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url); // Open URL in user's browser
@@ -102,6 +109,33 @@ function createWindow(): BrowserWindow {
   return win;
 }
 
+function createTray(): void {
+  // Use a simple fallback icon — nativeImage.createEmpty() for scaffold
+  const icon = nativeImage.createEmpty();
+  tray = new Tray(icon);
+  tray.setToolTip(app.getName());
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Open',
+      click: () => {
+        if (win) {
+          win.show();
+          win.focus();
+        }
+      }
+    },
+    { type: 'separator' },
+    {
+      label: 'Quit',
+      click: () => { app.quit(); }
+    }
+  ]);
+  tray.setContextMenu(contextMenu);
+  tray.on('double-click', () => {
+    if (win) { win.show(); win.focus(); }
+  });
+}
+
 try {
   //#region Main event handlers
 
@@ -109,12 +143,11 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  app.on('ready', () => setTimeout(createWindow, 400));
+  app.on('ready', () => setTimeout(() => { createWindow(); createTray(); }, 400));
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
+    // On macOS, keep the app running in the tray when all windows are closed
     if (process.platform !== 'darwin') {
       app.quit();
     }
@@ -291,6 +324,7 @@ try {
   setupDiscourseHandlers();
   setupGitHubHandlers();
   setupConnectorHandlers();
+  setupPolicyEngineHandlers();
   setupSailPointSDKHandlers();
 
 } catch (e) {
