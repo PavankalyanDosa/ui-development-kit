@@ -127,7 +127,7 @@ export class IscConnectionTabComponent implements OnInit {
           committerName: '',
           committerEmail: '',
           remoteUrl: '',
-          pushIntervalMinutes: 30
+          pushIntervalMinutes: 5
         }
       };
 

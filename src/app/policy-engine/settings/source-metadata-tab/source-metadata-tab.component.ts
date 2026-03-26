@@ -87,7 +87,7 @@ export class SourceMetadataTabComponent implements OnInit {
           committerName: '',
           committerEmail: '',
           remoteUrl: '',
-          pushIntervalMinutes: 30
+          pushIntervalMinutes: 5
         }
       };
 
