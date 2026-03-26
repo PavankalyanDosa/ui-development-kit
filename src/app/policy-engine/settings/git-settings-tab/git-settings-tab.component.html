@@ -1,0 +1,113 @@
+@if (loading) {
+  <div class="git-loading">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+} @else {
+  <form [formGroup]="form" class="git-form" (ngSubmit)="onSave()">
+
+    <!-- Committer Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Committer Name</mat-label>
+      <input
+        matInput
+        formControlName="committerName"
+        placeholder="e.g. Policy Engine Bot"
+        autocomplete="off"
+      />
+      <mat-hint>Name used for git commits (optional)</mat-hint>
+    </mat-form-field>
+
+    <!-- Committer Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Committer Email</mat-label>
+      <input
+        matInput
+        formControlName="committerEmail"
+        placeholder="e.g. bot@example.com"
+        autocomplete="off"
+      />
+      @if (committerEmailCtrl.errors?.['email'] && committerEmailCtrl.touched) {
+        <mat-error>Enter a valid email address</mat-error>
+      }
+      <mat-hint>Email used for git commits (optional)</mat-hint>
+    </mat-form-field>
+
+    <!-- Remote URL -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Remote URL</mat-label>
+      <input
+        matInput
+        formControlName="remoteUrl"
+        placeholder="e.g. https://github.com/org/repo.git"
+        autocomplete="off"
+      />
+      <mat-hint>Git remote repository URL (optional)</mat-hint>
+    </mat-form-field>
+
+    <!-- Auth Token -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Auth Token</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="authToken"
+        [placeholder]="authTokenAlreadyStored ? '••••••••••' : 'Enter auth token'"
+        autocomplete="new-password"
+      />
+      <mat-icon matSuffix
+        [matTooltip]="'Encrypted via OS keychain (safeStorage)'"
+        class="lock-icon">
+        lock
+      </mat-icon>
+      @if (authTokenAlreadyStored) {
+        <mat-hint>A token is stored. Enter a new value to replace it, or leave blank to keep existing.</mat-hint>
+      }
+    </mat-form-field>
+
+    <!-- Remove auth token action (only shown when token is stored) -->
+    @if (authTokenAlreadyStored) {
+      <div class="remove-secret-row">
+        <button mat-button type="button" class="remove-secret-btn" (click)="onRemoveAuthToken()">
+          <mat-icon>lock_open</mat-icon>
+          Remove stored token
+        </button>
+      </div>
+    }
+
+    <!-- Push Interval -->
+    <mat-form-field appearance="outline" class="push-interval-field">
+      <mat-label>Push Interval (minutes)</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="pushIntervalMinutes"
+        placeholder="5"
+        min="1"
+        autocomplete="off"
+      />
+      @if (pushIntervalCtrl.errors?.['min'] && pushIntervalCtrl.touched) {
+        <mat-error>Minimum 1 minute</mat-error>
+      }
+      @if (pushIntervalCtrl.errors?.['pattern'] && pushIntervalCtrl.touched) {
+        <mat-error>Enter a whole number (e.g. 5)</mat-error>
+      }
+      <mat-hint>How often to auto-push changes to remote (default: 5)</mat-hint>
+    </mat-form-field>
+
+    <!-- Save -->
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!isDirty || saving">
+        @if (saving) {
+          <mat-spinner diameter="18" class="btn-spinner"></mat-spinner>
+        } @else {
+          Save
+        }
+      </button>
+    </div>
+
+  </form>
+}
