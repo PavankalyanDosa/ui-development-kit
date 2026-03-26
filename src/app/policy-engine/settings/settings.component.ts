@@ -9,6 +9,7 @@ import { HasUnsavedChanges } from './unsaved-changes.guard';
 import { IscConnectionTabComponent } from './isc-connection-tab/isc-connection-tab.component';
 import { SourceMetadataTabComponent } from './source-metadata-tab/source-metadata-tab.component';
 import { GitSettingsTabComponent } from './git-settings-tab/git-settings-tab.component';
+import { SettingsActionsComponent } from './settings-actions/settings-actions.component';
 import { PolicyEngineIpcService } from '../services/policy-engine-ipc.service';
 
 @Component({
@@ -23,7 +24,8 @@ import { PolicyEngineIpcService } from '../services/policy-engine-ipc.service';
     MatTooltipModule,
     IscConnectionTabComponent,
     SourceMetadataTabComponent,
-    GitSettingsTabComponent
+    GitSettingsTabComponent,
+    SettingsActionsComponent
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'

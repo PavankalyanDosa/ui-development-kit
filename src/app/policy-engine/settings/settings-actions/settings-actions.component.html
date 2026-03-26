@@ -1,0 +1,43 @@
+<div class="settings-actions-section">
+  <mat-divider></mat-divider>
+
+  <div class="actions-row">
+
+    <!-- Export Settings -->
+    <div class="action-item">
+      <button mat-stroked-button (click)="onExport()" aria-label="Export Settings">
+        <mat-icon>download</mat-icon>
+        Export Settings
+      </button>
+      <p class="action-label">Download a JSON backup of all settings (secrets excluded)</p>
+    </div>
+
+    <!-- Import Settings -->
+    <div class="action-item">
+      <button mat-stroked-button (click)="onImport()" aria-label="Import Settings">
+        <mat-icon>upload</mat-icon>
+        Import Settings
+      </button>
+      <p class="action-label">Restore settings from a JSON file; re-enter secrets after import</p>
+      <!-- Hidden file input -->
+      <input
+        #fileInput
+        type="file"
+        accept=".json"
+        class="file-input-hidden"
+        (change)="onFileSelected($event)"
+        aria-hidden="true"
+      />
+    </div>
+
+    <!-- Factory Reset -->
+    <div class="action-item">
+      <button mat-stroked-button color="warn" (click)="onFactoryReset()" aria-label="Factory Reset">
+        <mat-icon>delete_forever</mat-icon>
+        Factory Reset
+      </button>
+      <p class="action-label">Clear all settings and encrypted secrets; cannot be undone</p>
+    </div>
+
+  </div>
+</div>
