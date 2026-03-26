@@ -208,6 +208,13 @@ export class AppComponent implements OnDestroy, OnInit {
     }
   }
 
+  onPeNavItemClick(event: MouseEvent) {
+    // Policy Engine nav click — no connection required
+    if (this.isSmallScreen && this.sidenav) {
+      void this.sidenav.close();
+    }
+  }
+
   /**
    * Disconnects from Identity Security Cloud and navigates home.
    */

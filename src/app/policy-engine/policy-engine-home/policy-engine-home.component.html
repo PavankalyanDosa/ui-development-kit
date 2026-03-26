@@ -1,0 +1,48 @@
+@if (loading) {
+  <div class="pe-home-loading">
+    <mat-spinner diameter="48"></mat-spinner>
+    <p>Loading Policy Engine...</p>
+  </div>
+} @else {
+  <div class="pe-home-container">
+
+    @if (showBanner) {
+      <div class="pe-setup-banner" role="alert">
+        <mat-icon class="banner-icon">warning</mat-icon>
+        <span class="banner-text">Setup required — configure your ISC connection to get started.</span>
+        <button mat-icon-button class="banner-dismiss" (click)="dismissBanner()" aria-label="Dismiss banner">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    }
+
+    @if (!iscConfigured) {
+      <div class="pe-empty-state">
+        <mat-icon class="empty-icon">policy</mat-icon>
+        <h2>Welcome to Policy Engine</h2>
+        <p>Connect to your ISC tenant to start managing policies.</p>
+        <button mat-raised-button color="primary"
+                routerLink="/policy-engine/settings"
+                [queryParams]="{ tab: 'isc' }">
+          Configure your ISC connection to get started
+        </button>
+      </div>
+    } @else {
+      <div class="pe-ready-state">
+        <mat-icon class="ready-icon">check_circle</mat-icon>
+        <h2>Policy Engine</h2>
+        <p>Your ISC connection is configured. Policy management features are coming in later phases.</p>
+
+        @if (showTestConnectionTip) {
+          <mat-card class="pe-tip-card">
+            <mat-card-content>
+              <mat-icon>info</mat-icon>
+              Test Connection available in Settings to verify your credentials.
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    }
+
+  </div>
+}

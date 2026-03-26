@@ -76,6 +76,12 @@ export const appRoutes: Routes = [
   },
 
   {
+    path: 'policy-engine',
+    loadChildren: () =>
+      import('./policy-engine/policy-engine.routes').then(m => m.POLICY_ENGINE_ROUTES)
+  },
+
+  {
     path: '**',
     component: PageNotFoundComponent
   }

@@ -1,6 +1,6 @@
 {
   "components": {
-    "enabled": ["component-selector"]
+    "enabled": ["component-selector", "policy-engine"]
   },
   "themes": {
     "light": {
